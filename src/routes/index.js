@@ -19,7 +19,7 @@ export default function Routes() {
             <Stack.Screen
                 name="Task"
                 component={Task}
-            options={{headerTintColor:'#f92e6a'}}>
+            options={{headerTintColor:'#f92e6a', headerBackVisible:false}}>
             </Stack.Screen>
 
             <Stack.Screen

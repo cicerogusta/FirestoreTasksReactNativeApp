@@ -10,3 +10,13 @@ export const signIn = async(email, senha) =>{
     alert(error)
   }
 }
+
+export const checkLoggedUser = async() =>{
+  try{
+    return auth.currentUser!== null
+    
+
+  }catch(error) {
+    alert(error)
+  }
+}

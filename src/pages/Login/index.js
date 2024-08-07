@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
 import googleImage from "../../assets/images/google.png"
 import appleImage from "../../assets/images/apple.png"
-import firebaseRepository, { signIn } from "../../repository/firebaserepository";
+import  { signIn, checkLoggedUser } from "../../repository/firebaserepository";
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -16,18 +16,16 @@ export default function Login() {
     const navigation = useNavigation();
 
 
+    useEffect(() => {
+        if(checkLoggedUser){
+            navigation.navigate('Task')
+        }
+        
+    }, [])
     const handleLogIn = async () => {
         try{
-            await signIn(email, senha).then((userCredential) => {
-                const user = userCredential.user
-                if(user!==null) {
-                    navigation.navigate('Task')
-
-                }else{
-                    alert('erro')
-                }
-            })
-            
+            await signIn(email, senha)
+            navigation.navigate('Task')
 
         }catch(error){
             alert(error)
